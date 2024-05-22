@@ -27,6 +27,7 @@ map("n", "<leader>:", "<cmd> tabc<CR>", { desc = "Close tab" })
 map("n", "<leader>w", "<cmd> bprevious<cr>:bdelete #<cr>", { desc = "Close current buffer and go back to the previous one" })
 
 map("i", "<Esc>", "<esc>", { desc = "Exit insert mode" })
+map("n", "<leader>tt", function() require("base46").toggle_transparency() end, { desc = "Toggle transparency" })
 
 -- Fugitive key mappings
 map("n", "<leader>gs", "<cmd> Git<CR>", { desc = "Git status" })
