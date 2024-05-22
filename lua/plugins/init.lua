@@ -99,10 +99,6 @@ return {
     lazy = false
   },
   {
-    "xiyaowong/transparent.nvim",
-    lazy = false
-  },
-  {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
