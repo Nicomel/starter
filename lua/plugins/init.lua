@@ -8,31 +8,154 @@ return {
   },
 
   -- These are some examples, uncomment them if you want to see them work!
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   config = function()
-  --     require("nvchad.configs.lspconfig").defaults()
-  --     require "configs.lspconfig"
-  --   end,
-  -- },
-  --
-  -- {
-  -- 	"williamboman/mason.nvim",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"lua-language-server", "stylua",
-  -- 			"html-lsp", "css-lsp" , "prettier"
-  -- 		},
-  -- 	},
-  -- },
-  --
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("nvchad.configs.lspconfig").defaults()
+      require "configs.lspconfig"
+    end,
+  },
+  {
+  	"williamboman/mason.nvim",
+  	opts = {
+  		ensure_installed = {
+          -- lua stuff
+        "lua-language-server",
+        "stylua",
+
+        -- web dev stuff
+        "css-lsp",
+        "html-lsp",
+        "typescript-language-server",
+        "diagnostic-languageserver",
+        "tailwindcss-language-server",
+        "deno",
+        "json-lsp",
+        "prettier",
+
+        -- c/cpp stuff
+        "clangd",
+        "clang-format",
+
+        -- python
+        "black",
+        "flake8",
+        "pyright",
+        "debugpy",
+
+        -- rust
+        "rust-analyzer",
+
+        -- shell
+        "shfmt",
+        "shellcheck"
+  		},
+  	},
+  },
+  {
+  	"nvim-treesitter/nvim-treesitter",
+  	opts = {
+  		ensure_installed = {
+      "vim",
+      "lua",
+      "html",
+      "css",
+      "python",
+      "rust",
+      "javascript",
+      "typescript",
+      "http",
+      "tsx",
+      "c",
+      "markdown",
+      "markdown_inline",
+      "terraform"
+  		},
+  	},
+  },
+  -- Install a plugin
+  {
+    "max397574/better-escape.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("better_escape").setup()
+    end,
+  },
+
+  {
+    "tpope/vim-fugitive",
+    lazy = false
+  },
+  {
+    "tpope/vim-unimpaired",
+    lazy = false
+  },
+  {
+    "tpope/vim-abolish",
+    lazy = false
+  },
+  {
+    "tpope/vim-surround",
+    lazy = false
+  },
+  {
+    "xiyaowong/transparent.nvim",
+    lazy = false
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          keymap = {
+            accept = "<C-k>",
+            accept_word = false,
+            accept_line = false,
+            next = "<C-]>",
+            prev = "<C-[>",
+            dismiss = "<S-Tab>",
+          },
+        },
+        panel = {
+          enabled = true,
+          auto_refresh = true,
+          keymap = {
+            jump_prev = "[[",
+            jump_next = "]]",
+            accept = "<CR>",
+            refresh = "gr",
+            open = "<C-h>"
+          },
+        },
+      })
+    end,
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+    },
+  },
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1000,
+    config = true,
+    opts = {
+      rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }
+    }
+  },
+  {
+    "rest-nvim/rest.nvim",
+    ft = "http",
+    dependencies = { "luarocks.nvim" },
+    config = function()
+      require("rest-nvim").setup()
+    end,
+  },
 }
