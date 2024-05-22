@@ -70,3 +70,14 @@ map("x", "ih", "<cmd> <C-U>Gitsigns select_hunk<CR>", { desc = "Select hunk" })
 
 -- Rest key mappings
 map("n", "<leader>j", function() require('rest-nvim').run() end, { desc = "Run REST request" })
+
+-- Copilot chat mappings
+-- Quick chat with Copilot
+map("v", "<leader>ccq", function()
+    local input = vim.fn.input("Quick Chat: ")
+    if input ~= "" then
+      require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+    end
+  end,
+  { desc = "CopilotChat - Quick chat" }
+)
