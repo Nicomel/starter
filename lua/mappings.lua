@@ -10,10 +10,11 @@ local map = vim.keymap.set
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 -- Disabled key mappings
-map("n", "<Tab>", "", { desc = "Disable Tab" })
-map("n", "<TAB>", "", { desc = "Disable TAB" })
-map("n", "<S-Tab>", "", { desc = "Disable Shift-Tab" })
+-- map("n", "<Tab>", "", { desc = "Disable Tab" })
+-- map("n", "<TAB>", "", { desc = "Disable TAB" })
+-- map("n", "<S-Tab>", "", { desc = "Disable Shift-Tab" })
 map("n", "<Esc>", "", { desc = "Disable Escape" })
+map("n", "<C-l>", "<C-i>", { desc = "Move forward in jumplist" })
 
 -- General key mappings
 map("n", "<Esc>", "<esc>", { desc = "Escape" })
