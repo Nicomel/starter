@@ -14,7 +14,7 @@ local map = vim.keymap.set
 -- map("n", "<TAB>", "", { desc = "Disable TAB" })
 -- map("n", "<S-Tab>", "", { desc = "Disable Shift-Tab" })
 map("n", "<Esc>", "", { desc = "Disable Escape" })
-map("n", "<C-l>", "<C-i>", { desc = "Move forward in jumplist" })
+map("n", "<C-m>", "<C-i>", { desc = "Move forward in jumplist" })
 
 -- General key mappings
 map("n", "<Esc>", "<esc>", { desc = "Escape" })
