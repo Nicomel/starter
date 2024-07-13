@@ -152,6 +152,19 @@ return {
     event = "VeryLazy",
   },
   {
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require("supermaven-nvim").setup({
+        keymaps = {
+          accept_suggestion = "<C-k>",
+          clear_suggestion = "<C-]>",
+          accept_word = "<C-j>",
+        },
+      })
+    end,
+    lazy = false,
+  },
+  {
     "vhyrro/luarocks.nvim",
     priority = 1000,
     config = true,
@@ -164,7 +177,7 @@ return {
     ft = "http",
     dependencies = { "luarocks.nvim" },
     config = function()
-      require("rest-nvim").setup()
+      require("configs.rest").setup()
     end,
   },
   {
