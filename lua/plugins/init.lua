@@ -60,6 +60,7 @@ return {
       "lua",
       "html",
       "css",
+      "json",
       "python",
       "rust",
       "javascript",
