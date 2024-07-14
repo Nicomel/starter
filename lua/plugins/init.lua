@@ -16,6 +16,19 @@ return {
     end,
   },
   {
+    "hrsh7th/nvim-cmp",
+    opts = {
+      sources = {
+        { name = "nvim_lsp" },
+        { name = "supermaven" },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "nvim_lua" },
+        { name = "path" },
+      },
+    },
+  },
+  {
   	"williamboman/mason.nvim",
   	opts = {
   		ensure_installed = {
@@ -98,6 +111,12 @@ return {
   {
     "tpope/vim-surround",
     lazy = false
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function ()
+      require("copilot_cmp").setup()
+    end
   },
   {
     "zbirenbaum/copilot.lua",
