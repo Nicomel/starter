@@ -87,6 +87,12 @@ return {
   		},
   	},
   },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      view = { adaptive_size = true }
+    }
+  },
   -- Install a plugin
   {
     "max397574/better-escape.nvim",
