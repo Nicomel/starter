@@ -5,6 +5,7 @@ return {
     config = function()
       require "configs.conform"
     end,
+    lazy = false -- format on save does not load otherwise
   },
 
   -- These are some examples, uncomment them if you want to see them work!
@@ -113,6 +114,7 @@ return {
         "clang-format",
 
         -- python
+        "ruff",
         "black",
         "flake8",
         "pyright",
