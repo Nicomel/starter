@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -17,31 +17,26 @@ return {
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      require("copilot").setup({
+      require("copilot").setup {
         suggestion = { enabled = false },
         panel = { enabled = false },
-      })
+      }
     end,
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    -- lazy = false,
     branch = "canary",
     dependencies = {
       { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
       { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
     },
+    build = "make tiktoken", -- Only on MacOS or Linux
     opts = {
-      show_help = "yes", -- Show help text for CopilotChatInPlace, default: yes
-      debug = false, -- Enable or disable debug mode, the log file will be in ~/.local/state/nvim/CopilotChat.nvim.log
-      disable_extra_info = 'no', -- Disable extra information (e.g: system prompt) in the response.
-      language = "English" -- Copilot answer language settings when using default prompts. Default language is English.
-      -- proxy = "socks5://127.0.0.1:3000", -- Proxies requests via https or socks.
-      -- temperature = 0.1,
+      -- See Configuration section for rest
     },
-    build = function()
-      vim.notify("Please update the remote plugins by running ':UpdateRemotePlugins', then restart Neovim.")
-    end,
     event = "VeryLazy",
+    keys = require "configs.copilotchat",
   },
   {
     "supermaven-inc/supermaven-nvim",
@@ -88,10 +83,10 @@ return {
     },
   },
   {
-  	"williamboman/mason.nvim",
-  	opts = {
-  		ensure_installed = {
-          -- lua stuff
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        -- lua stuff
         "lua-language-server",
         "stylua",
 
@@ -121,37 +116,37 @@ return {
 
         -- shell
         "shfmt",
-        "shellcheck"
-  		},
-  	},
+        "shellcheck",
+      },
+    },
   },
   {
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-  		ensure_installed = {
-      "vim",
-      "lua",
-      "html",
-      "css",
-      "json",
-      "python",
-      "rust",
-      "javascript",
-      "typescript",
-      "http",
-      "tsx",
-      "c",
-      "markdown",
-      "markdown_inline",
-      "terraform"
-  		},
-  	},
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "vim",
+        "lua",
+        "html",
+        "css",
+        "json",
+        "python",
+        "rust",
+        "javascript",
+        "typescript",
+        "http",
+        "tsx",
+        "c",
+        "markdown",
+        "markdown_inline",
+        "terraform",
+      },
+    },
   },
   {
     "nvim-tree/nvim-tree.lua",
     opts = {
-      view = { adaptive_size = true }
-    }
+      view = { adaptive_size = true },
+    },
   },
   -- Install a plugin
   {
@@ -164,27 +159,27 @@ return {
 
   {
     "tpope/vim-fugitive",
-    lazy = false
+    lazy = false,
   },
   {
     "tpope/vim-unimpaired",
-    lazy = false
+    lazy = false,
   },
   {
     "tpope/vim-abolish",
-    lazy = false
+    lazy = false,
   },
   {
     "tpope/vim-surround",
-    lazy = false
+    lazy = false,
   },
   {
     "vhyrro/luarocks.nvim",
     priority = 1000,
     config = true,
     opts = {
-      rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }
-    }
+      rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" },
+    },
   },
   {
     "rest-nvim/rest.nvim",
@@ -195,9 +190,19 @@ return {
     end,
   },
   {
+    "MeanderingProgrammer/render-markdown.nvim",
+    lazy = false,
+    opts = {},
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+  },
+  {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   },
 }
