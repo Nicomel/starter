@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -52,7 +52,7 @@ return {
     },
   },
   {
-  	"nvim-treesitter/nvim-treesitter",
+    "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
         "vim",
@@ -128,9 +128,41 @@ return {
   {
     "Robitx/gp.nvim",
     config = function()
-      require("gp").setup({
-        openai_api_key = os.getenv("OPENAI_API_KEY"),
-      })
+      require("gp").setup {
+        openai_api_key = { "cat", "/Users/nicolasmetivier/.config/openai.key" },
+        default_command_agent = "gemini-2.0-flash", -- ✅ for commands like :GpRewrite, :GpExplain
+        default_chat_agent = "gemini-2.0-flash", -- ✅ for :GpChatNew
+        providers = {
+          openai = {
+            disable = true,
+            endpoint = "https://api.openai.com/v1/chat/completions",
+            -- secret = os.getenv("OPENAI_API_KEY"),
+          },
+          googleai = {
+            -- disable = true,
+            endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}",
+            secret = { "cat", "/Users/nicolasmetivier/.config/googleai.key" },
+          },
+        },
+        agents = {
+          {
+            name = "gpt-3.5-turbo",
+            provider = "openai",
+            model = "gpt-3.5-turbo",
+            chat = true,
+            command = true,
+            system_prompt = "You are a senior developer assistant.",
+          },
+          {
+            name = "gemini-2.0-flash",
+            provider = "googleai",
+            model = { model = "gemini-2.0-flash" },
+            chat = true,
+            command = true,
+            system_prompt = "You are a fast and concise Google Gemini model.",
+          },
+        },
+      }
     end,
     lazy = false,
   },
